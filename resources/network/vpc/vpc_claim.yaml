@@ -1,0 +1,7 @@
+apiVersion: segoja.example/v1alpha1
+kind: Xvpc
+metadata:
+  name: xvpc-claim
+  namespace: default
+spec:
+  parameters:

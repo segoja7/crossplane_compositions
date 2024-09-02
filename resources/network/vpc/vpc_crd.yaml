@@ -1,0 +1,39 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xvpcs.segoja.example
+spec:
+  group: segoja.example
+  names:
+    kind: Xvpc
+    plural: xvpcs
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                parameters:
+                  type: object
+                  properties:
+                    cidrBlock:
+                      type: string
+                      #default: "10.0.0.0/16"
+                    enableDnsHostnames:
+                      type: boolean
+                      default: true
+                    enableDnsSupport:
+                      type: boolean
+                      default: true
+                    region:
+                      type: string
+                      default: "us-east-1"
+                  required:
+                    - region
+
+

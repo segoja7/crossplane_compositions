@@ -1,0 +1,30 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xvpc-composition
+spec:
+  compositeTypeRef:
+    apiVersion: segoja.example/v1alpha1
+    kind: Xvpc
+  resources:
+    - name: vpc
+      base:
+        apiVersion: ec2.aws.upbound.io/v1beta1
+        kind: VPC
+        spec:
+          forProvider:
+            #cidrBlock: 172.0.0.0/16
+            enableDnsHostnames: true
+            enableDnsSupport: true
+            region: us-east-1
+            tags:
+              app: vpc-wordpress
+              ManagedBy: crossplane
+          providerConfigRef:
+            name: segoja7
+      patches:
+        - fromFieldPath: "metadata.name"
+          toFieldPath: "spec.forProvider.tags.Name"
+        - fromFieldPath: "metadata.name"
+          toFieldPath: "metadata.annotations['crossplane.io/external-name']"
+
