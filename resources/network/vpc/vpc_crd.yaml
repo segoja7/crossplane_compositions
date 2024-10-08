@@ -5,14 +5,14 @@ metadata:
 spec:
   group: segoja.example
   names:
-    kind: Xvpc
-    plural: xvpcs
+    kind: Xvpc #singular name
+    plural: xvpcs #plural name
   versions:
-    - name: v1alpha1
-      served: true
-      referenceable: true
+    - name: v1alpha1 #Define the versions from alpha to pdn or deprecated
+      served: true #version actively
+      referenceable: true #indicates which version of the schema
       schema:
-        openAPIV3Schema:
+        openAPIV3Schema: # OpenAPI schema
           type: object
           properties:
             spec:
@@ -23,7 +23,7 @@ spec:
                   properties:
                     cidrBlock:
                       type: string
-                      #default: "10.0.0.0/16"
+                      default: "10.0.0.0/16"
                     enableDnsHostnames:
                       type: boolean
                       default: true

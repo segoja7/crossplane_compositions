@@ -1,7 +1,8 @@
 apiVersion: segoja.example/v1alpha1
-kind: Xvpc
+kind: Xvpc #singular claim name in the compositeResourceDefinition
 metadata:
-  name: xvpc-claim
+  name: vpc-wordpress-claim
   namespace: default
 spec:
-  parameters:
+  parameters: #Parameters in the composition
+    cidrBlock: 192.178.0.0/16
